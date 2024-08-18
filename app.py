@@ -19,7 +19,13 @@ def index():
 
 @app.route("/recommend")
 def recommend():
-    return render_template("recommned.html")
+    return render_template("recommned.html" ,                            
+                            book_name = list(top_50_books['Book-Title'].values),
+                            Number_of_Rating = list(np.round(top_50_books['Number-of-Rating'].values)),
+                            Avg_Rating = list(top_50_books['Avg-Rating'].values),
+                            image_url = list(top_50_books['Image-URL-L'].values),
+                            Book_Author = list(top_50_books['Book-Author'].values),
+                            Publisher = list(top_50_books['Publisher'].values))
 
 if __name__ == '__main__':
     app.run(debug = True)
