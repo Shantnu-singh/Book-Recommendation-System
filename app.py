@@ -57,6 +57,10 @@ def suggest_books():
     suggestions = [book for book in sorted_books if query in book.lower()]
     return jsonify(suggestions)
 
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
 
 if __name__ == '__main__':
     app.run(debug = True)

@@ -45,22 +45,6 @@
             <div class="col-md-12">
                 <h1 class = "text">Top 50 Books</h1>
             </div>
-
-            {% for i in range(50) %}
-
-            <div class="col-md-3" style="margin-top: 50px;">
-                <div class="card">
-                    <div class="class-body">
-                        <img src={{image_url[i]}} alt="Book image">
-                        <h2 class = "text">{{book_name[i]}}</h2>
-                        <h2 class = "text">{{Book_Author[i]}}</h2>
-                        <h2 class = "text">Avg. Rating - {{Avg_Rating[i]}}/10</h2>
-                        <h2 class = "text">Votes- {{Number_of_Rating[i]}}</h2>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
     </div>
 </body>
 <div class="container">
