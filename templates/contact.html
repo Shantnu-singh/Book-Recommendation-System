@@ -4,21 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book recommdeation</title>
+    <title>Contact Us - Ink Finder</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
     <link rel="stylesheet" href="static\style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        .contact-form-container {
+            max-width: 600px;
+        }
 
+        .contact-header {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #343a40;
+            font-weight: 300;
+        }
+    </style>
 </head>
 
 <body>
     <nav class="navbar sticky-top bg-body-tertiary">
         <div class="container-fluid">
-
             <a class="navbar-brand" href="/">
-                <img src="static\images\inkfinder.svg" alt="Bootstrap" width="40" height="34"> 
+                <img src="static\images\inkfinder.svg" alt="Bootstrap" width="40" height="34">
                 Ink Finder
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -28,57 +37,84 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/recommend">Recommend</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contact">Contact</a>
+                        <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="conatiner">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class = "text">Top 50 Books</h1>
+
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <h1 class="contact-header">Get in Touch</h1>
+                <p class="text-muted mb-5">Have a question or a book recommendation? We'd love to hear from you!</p>
             </div>
+            <div class="col-lg-8 contact-form-container">
+                <form action="#" method="POST">
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" placeholder="Your Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="emailAddress" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="emailAddress" placeholder="name@example.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="subject" placeholder="What's on your mind?" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" rows="5" placeholder="Type your message here..." required></textarea>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                    <img src="static\images\inkfinder.svg" alt="InkFinder Logo " width="40" height="34">
+                </a>
+                <span class="mb-3 mb-md-0 text-body-secondary">© 2024 INK-FINDER, Inc</span>
+            </div>
+
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3">
+                    <a class="text-body-secondary" href="https://x.com/Shantnupsph?t=gOUxGsmCl9-oqoxmY_hSTQ&s=09">
+                        <i class="bi bi-twitter" style="font-size: 24px;"></i>
+                    </a>
+                </li>
+                <li class="ms-3">
+                    <a class="text-body-secondary" href="https://github.com/Shantnu-singh">
+                        <i class="bi bi-github" style="font-size: 24px;"></i>
+                    </a>
+                </li>
+                <li class="ms-3">
+                    <a class="text-body-secondary" href="https://in.linkedin.com/in/shantnu-singh-70400a22b">
+                        <i class="bi bi-linkedin" style="font-size: 24px;"></i>
+                    </a>
+                </li>
+            </ul>
+        </footer>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="static\script.js"></script>
 </body>
-<div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-      <div class="col-md-4 d-flex align-items-center">
-        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-            <img src="static\images\inkfinder.svg" alt="InkFinder Logo " width="40" height="34">
-          </a>   
-        <span class="mb-3 mb-md-0 text-body-secondary">© 2024 INK-FINDER, Inc</span>
-      </div>
-  
-      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3">
-            <a class="text-body-secondary" href="https://x.com/Shantnupsph?t=gOUxGsmCl9-oqoxmY_hSTQ&s=09">
-              <i class="bi bi-twitter" style="font-size: 24px;"></i>
-            </a>
-          </li>
-          <li class="ms-3">
-            <a class="text-body-secondary" href="https://github.com/Shantnu-singh">
-              <i class="bi bi-github" style="font-size: 24px;"></i>
-            </a>
-          </li>
-          <li class="ms-3">
-            <a class="text-body-secondary" href="https://in.linkedin.com/in/shantnu-singh-70400a22b">
-              <i class="bi bi-linkedin" style="font-size: 24px;"></i>
-            </a>
-          </li>
-          
-      </ul>
-    </footer>
-  </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-<script src="static\script.js"></script>
 
 </html>
