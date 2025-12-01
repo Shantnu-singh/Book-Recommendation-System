@@ -2,3 +2,5 @@ Dataset/Books.csv
 Dataset/Ratings.csv
 Dataset/Users.csv
 models\Books.pkl
+.venv/
+__pycache__/
