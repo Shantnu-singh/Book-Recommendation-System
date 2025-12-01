@@ -4,12 +4,12 @@ import numpy as np
 
 app = Flask(__name__)
 
-top_50_books = pickle.load(open("models\popolar_books.pkl" , "rb"))
+top_50_books = pickle.load(open("models/popolar_books.pkl" , "rb"))
 
-list_of_book = pickle.load(open("models\list_of_book.pkl" , "rb"))
-pivot_table = pickle.load(open("models\pivot_table.pkl" , "rb"))
-similarity_score = pickle.load(open("models\similarity_score.pkl" , "rb"))
-books = pickle.load(open("models\Books.pkl" , "rb"))
+list_of_book = pickle.load(open("models/list_of_book.pkl" , "rb"))
+pivot_table = pickle.load(open("models/pivot_table.pkl" , "rb"))
+similarity_score = pickle.load(open("models/similarity_score.pkl" , "rb"))
+books = pickle.load(open("models/Books.pkl" , "rb"))
 
 sorted_books = sorted(list_of_book)
 
@@ -63,4 +63,4 @@ def contact():
 
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(host="0.0.0.0", port=5000)
