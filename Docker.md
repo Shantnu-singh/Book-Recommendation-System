@@ -30,3 +30,14 @@ docker rm container_name
 docker rmi image_name
 
 docker tag old_image_name new_image_name
+
+
+# session 2 :
+ - Setting up env varibale in docker 
+
+# Normally env varibels are use to store secrerets (API key, Auth Keys)
+--env PORT=8000 in docker run
+
+# Go inside a running continer
+docker exec -it container_name bash
+
