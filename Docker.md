@@ -41,3 +41,9 @@ docker tag old_image_name new_image_name
 # Go inside a running continer
 docker exec -it container_name bash
 
+# Make default env
+- in DockerFile ENV PORT = 5000 ## can be overwrite in docker run 
+
+# take env from file
+--env-file .env in docker run command
+

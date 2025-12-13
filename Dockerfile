@@ -10,6 +10,9 @@ COPY . .
 # install dependieces
 RUN pip install --no-cache -r requirements.txt
 
+# Add env
+ENV PORT 5000
+
 # COPY Diff structues
 # COPY ./models/ ./models/
 # COPY ./Dataset/ ./Dataset/
