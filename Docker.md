@@ -47,3 +47,24 @@ docker exec -it container_name bash
 # take env from file
 --env-file .env in docker run command
 
+
+# Session 3 :
+caching and mutli stage builds
+
+- layer concept :
+dockerfile is step of instu : each statement is a seperate layers
+- docker file read from top to bottom 
+- each layer have a unique SHA Value
+- layer get stack one on top to other
+- FROM is BaseLayer
+- each layer cache from, and if SHA is aviliable is doesn't get built it get rebuild from cached.
+- cached invalidate : if a layer is cached ivaliadate all the layer below that need to be rebuild, caching won't be there. (downstream layer will be rebuild)
+
+### mutlistage build
+- to reduce size of docker image
+- in single dockerfile, define muitiple stage
+- a single stage starts from 'FROM' statements
+- stage 1 : Builder stage: install packages and compile
+- stage 2 : copy these compile stage ino final file
+- and then discard Builder stage. Hence final stage is of smaller size.
+- can use mutiple stages, final stage is final dockerfile 
