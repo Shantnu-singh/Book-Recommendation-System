@@ -1,70 +1,271 @@
-# Write Docker file
-- add layers
-- Instruction / steps
-- read top to bottom
+# 🐳 Docker Fundamentals – Structured Notes
 
-# Docker Image
-- Base layer is the first line ( can be imported using FROM )
+## 1️⃣ What is a Dockerfile?
 
-# Then do docker built
-use docker build -t app_name . --> this step will give us a docker image
+A **Dockerfile** is a text file that contains a series of **instructions** used to build a Docker image.
 
-# Run Images 
+* Dockerfiles are read **from top to bottom**
+* Each instruction creates a **new layer**
+* Layers are stacked on top of each other
+
+---
+
+## 2️⃣ Docker Image & Layers
+
+### 🔹 Docker Image
+
+* A Docker image is a **blueprint** used to create containers
+* Images are **immutable**
+* Built using a Dockerfile
+
+### 🔹 Layers Concept
+
+* Each Dockerfile instruction = **one layer**
+* Every layer has a **unique SHA hash**
+* Layers are cached to speed up builds
+* Layers are stacked sequentially
+
+### 🔹 Base Layer
+
+* The **first instruction** must always be:
+
+```dockerfile
+FROM
+```
+
+* This defines the **base image**
+* All other layers are built on top of it
+
+---
+
+## 3️⃣ Building a Docker Image
+
+Use the following command to build an image:
+
+```bash
+docker build -t app_name .
+```
+
+### Explanation:
+
+* `-t app_name` → name/tag for the image
+* `.` → build context (current directory)
+
+✅ This command creates a **Docker image**
+
+---
+
+## 4️⃣ Running Docker Containers
+
+### 🔹 Run a Container
+
+```bash
 docker run image_name
+```
 
-# Port mapping
-docker run -p5000:5000 image_name
+### 🔹 Port Mapping
 
-# detach mode
-docker run -d # so that we don't engage the terminal 
+```bash
+docker run -p 5000:5000 image_name
+```
 
-# docker stop
+* Left side → Host port
+* Right side → Container port
+
+---
+
+## 5️⃣ Detached Mode
+
+Run container in background (non-interactive):
+
+```bash
+docker run -d image_name
+```
+
+---
+
+## 6️⃣ Container Management
+
+### 🔹 Stop a Container
+
+```bash
 docker stop container_name
+```
 
-# docker run container with name
+### 🔹 Run Container with a Name
+
+```bash
 docker run --name sample_name -d image_name
+```
 
-docker ps -a #to see all docker contrainers
+### 🔹 List Containers
 
+```bash
+docker ps -a
+```
+
+### 🔹 Remove Container
+
+```bash
 docker rm container_name
+```
+
+### 🔹 Remove Image
+
+```bash
 docker rmi image_name
+```
 
+### 🔹 Rename / Retag Image
+
+```bash
 docker tag old_image_name new_image_name
+```
 
+---
 
-# session 2 :
- - Setting up env varibale in docker 
+## 7️⃣ Session 2: Environment Variables
 
-# Normally env varibels are use to store secrerets (API key, Auth Keys)
---env PORT=8000 in docker run
+### 🔹 Why Environment Variables?
 
-# Go inside a running continer
+* Used to store **secrets** and **configurations**
+* Examples:
+
+  * API keys
+  * Auth tokens
+  * Port numbers
+
+---
+
+### 🔹 Pass Environment Variable at Runtime
+
+```bash
+docker run --env PORT=8000 image_name
+```
+
+---
+
+### 🔹 Set Default Environment Variable in Dockerfile
+
+```dockerfile
+ENV PORT=5000
+```
+
+⚠️ This value **can be overridden** during `docker run`
+
+---
+
+### 🔹 Load Environment Variables from a File
+
+```bash
+docker run --env-file .env image_name
+```
+
+---
+
+### 🔹 Access a Running Container
+
+```bash
 docker exec -it container_name bash
+```
 
-# Make default env
-- in DockerFile ENV PORT = 5000 ## can be overwrite in docker run 
+* `-it` → interactive terminal
+* `bash` → shell inside container
 
-# take env from file
---env-file .env in docker run command
+---
 
+## 8️⃣ Session 3: Docker Caching
 
-# Session 3 :
-caching and mutli stage builds
+### 🔹 Layer Caching Rules
 
-- layer concept :
-dockerfile is step of instu : each statement is a seperate layers
-- docker file read from top to bottom 
-- each layer have a unique SHA Value
-- layer get stack one on top to other
-- FROM is BaseLayer
-- each layer cache from, and if SHA is aviliable is doesn't get built it get rebuild from cached.
-- cached invalidate : if a layer is cached ivaliadate all the layer below that need to be rebuild, caching won't be there. (downstream layer will be rebuild)
+* Docker caches each layer using its SHA
+* If the instruction does not change → layer is reused
+* If a layer changes:
 
-### mutlistage build
-- to reduce size of docker image
-- in single dockerfile, define muitiple stage
-- a single stage starts from 'FROM' statements
-- stage 1 : Builder stage: install packages and compile
-- stage 2 : copy these compile stage ino final file
-- and then discard Builder stage. Hence final stage is of smaller size.
-- can use mutiple stages, final stage is final dockerfile 
+  * That layer and **all layers below it** are rebuilt
+  * Cache is invalidated downstream
+
+---
+
+## 9️⃣ Multi-Stage Builds
+
+### 🔹 Why Multi-Stage Builds?
+
+* Reduce final image size
+* Remove unnecessary build dependencies
+* Improve security & performance
+
+---
+
+### 🔹 How Multi-Stage Builds Work
+
+* One Dockerfile
+* Multiple `FROM` statements
+* Each `FROM` starts a **new stage**
+
+---
+
+### 🔹 Typical Stages
+
+#### 🏗 Stage 1: Builder Stage
+
+* Install dependencies
+* Compile/build application
+
+#### 🚀 Stage 2: Final Stage
+
+* Copy compiled artifacts from builder
+* Exclude build tools
+* Smaller and cleaner image
+
+```dockerfile
+FROM node:18 AS builder
+# build steps
+
+FROM node:18-slim
+# copy only required files
+```
+
+✅ Only the **final stage** is used as the resulting image
+❌ Builder stage is discarded
+
+---
+
+## 🔟 Key Takeaways
+
+* Dockerfiles are **layer-based**
+* Order of instructions matters
+* Use caching wisely
+* Use multi-stage builds for production
+* Smaller images = faster, safer, better 🚀
+
+## how normally we write data in docker
+- a layer is created on top of all the docker layer 
+- called writable layer. in which all the writing operation work in
+- each time the container stop, this writable layer get removed and new layer is formed. all the layer is immutable except this one.
+
+### Docker Volumne
+- persistant memory
+- docker conatiner is a isolated env, app_code + depe + os
+- if container generate some data, outside the con, how to store it permanetly
+- In docker demon, we create a volumne that is indep .. and we mount this volumne to container
+- we can mount a single vol to many container 
+- if we remove container. it doesn't remove volume
+- vol are manager by docker demon
+- vol are like hard drive for container
+
+#### Type of volumnes
+1) Volumn - manage and created by docker client
+- In this we don't write data in writeable layer, we write this in volume
+- volume are not accesabile without container 
+- only container can read and write in volumns
+
+2) Bind Mounts - filesystem mananger by host machine
+- for container volume and bind mounts are same
+- we can acess them by out host file system, folder and file
+- are acessable without container
+- also can be created on cloud like AWS
+
+3) Temp file system - Store data in RAM
+- resever space in ram as volumns
+- Is temp
