@@ -56,6 +56,12 @@ def recommend_books():
 def suggest_books():
     query = request.args.get("query", "").lower()
     suggestions = [book for book in sorted_books if query in book.lower()]
+    
+    # Save All of those sugesstin on a file
+    with open("audit/results.txt" , mode="a") as f:
+        f.write(str({query:suggestions}))
+        f.close()
+        
     return jsonify(suggestions)
 
 @app.route("/contact")
