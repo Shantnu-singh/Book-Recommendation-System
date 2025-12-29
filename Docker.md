@@ -269,3 +269,11 @@ FROM node:18-slim
 3) Temp file system - Store data in RAM
 - resever space in ram as volumns
 - Is temp
+
+### syntax
+- use --mount flag for mouting
+- in mount we don't maintain key values pair order
+
+> docker run --name book_recoomend --mount "type=bind,src=C:\Users\singh\College assignemnt\Resume Projects\Book Recommender System\audit,dst=/app/audit/"  -p5000:5000 -d book-recommendations-system:v2
+
+in src and dst add absoulte path, it doesn;t work with relative path
