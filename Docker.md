@@ -277,3 +277,21 @@ FROM node:18-slim
 > docker run --name book_recoomend --mount "type=bind,src=C:\Users\singh\College assignemnt\Resume Projects\Book Recommender System\audit,dst=/app/audit/"  -p5000:5000 -d book-recommendations-system:v2
 
 in src and dst add absoulte path, it doesn;t work with relative path
+
+### Docker Compose
+- while passing flags, chances of mistakes are there
+- Docker Compose is a file that has all those commands, this is a template that can be used to run all containers
+- We can run multiple containers
+- No need to run docker run command, good for reporodcubility
+
+1) What is docker compose
+- docker compose is a service, that is sep from docker 
+- for build multi container application
+- all the container are in the same network
+
+2) Advantges
+- single container -> Decoraative syntax, start container -> build + run container
+- muliti container application -> Decoraative syntax, easy to manager muilti containers
+- All contaiiner are on the same network
+- same command use for stop and build
+- nornally a config file, like compose.yaml, compose.yml
