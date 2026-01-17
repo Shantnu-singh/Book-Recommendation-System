@@ -295,3 +295,7 @@ in src and dst add absoulte path, it doesn;t work with relative path
 - All contaiiner are on the same network
 - same command use for stop and build
 - nornally a config file, like compose.yaml, compose.yml
+
+## commads
+docker compose up
+docker compose down
