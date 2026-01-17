@@ -1,0 +1,14 @@
+name: my-ml-app
+
+services:
+  books-recommend-app:
+    build: .
+    container_name: test_app
+    environment:
+      - PORT=8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - type: bind
+        source: "C:/Users/singh/College assignemnt/Resume Projects/Book Recommender System/audit"
+        target: /app/audit/
